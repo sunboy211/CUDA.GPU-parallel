@@ -15,3 +15,5 @@ GPGPU 通用图形处理器
 基于C语言(用于CPU端，和GPU端几乎完全一样，只使用特定关键词区分主机端和设备端) 由CUDA编译器来决定在哪个端运行
 
 imflipG.cu:将图像读入CPU端数组
+
+uch *TheImg 指向CPU DRAM内存的指针
