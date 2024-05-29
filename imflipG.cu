@@ -30,5 +30,5 @@ int main(int argc,char** argv){
   if(NumGPUs==0){
     printf("\nNo cuda device is available.\n"); exit(EXIT_FAILURE);
   }
-  cudaStatus=NumGPUs(0)
+  cudaStatus=cudaSetDevice(0);
 }
