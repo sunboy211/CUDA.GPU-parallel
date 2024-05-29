@@ -17,5 +17,9 @@ GPGPU 通用图形处理器
 imflipG.cu:将图像读入CPU端数组
 
 uch *TheImg 指向CPU DRAM内存的指针
+
 uch *CopyImg 指向另一块CPU 内存的指针
+
 cuda.malloc() API分配GPU内存 返回的是指向GPU内存的指针 但是这个指针保存在CPU端变量GPUImg中
+
+注：ul:unsigned long; uch:unsigned char; ui:unsigned int
