@@ -15,3 +15,6 @@ typedef unsigned char uch;
 uch *TheImg,*CopyImg;
 uch *GPUImg,*GPUCopyImg,*GPUResult;
 
+//cudaGetDeviceCount() 一共几个GPU
+//cudaSetDevice() 选择哪个GPU
+//cudaGetDeviceProperties GPU参数
