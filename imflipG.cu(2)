@@ -12,5 +12,11 @@ int main(int argc,char **argv){
     fprintf(stderr,"cuda malloc failed. Cannot allocate GPU memory!");
     exit(EXIT_FAILURE);
   }
-  
+  //为输入向量主机端内存复制到GPU缓冲区
+  cudaStatus=cudaMemcpy(GPUImg,TheImg,IMAGESIZE,cudaMemcpyHostToDevice);
+  if(cudaStatus!=cudaSuccess){
+    fprintf(stderr,"cudaMemcpy CPU to GPU failed!");
+    exit(EXIT_FAILURE);
+  }
+  cudaEventRecord(t2,0);//传输结束后的时间
 }
