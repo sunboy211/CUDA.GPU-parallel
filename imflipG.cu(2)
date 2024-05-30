@@ -1,1 +1,7 @@
 //启动GPU核函数
+int main(int argc,char **argv){
+  cudaError_t cudaStatus,cudaStatus2;
+  cudaEvent_t t1,t2,t3,t4;
+  ...
+  cudaEventCreate(&t1);cudaEventCreate(&t2);cudaEventCreate(&t3);cudaEventCreate(&t4);
+}
