@@ -4,4 +4,13 @@ int main(int argc,char **argv){
   cudaEvent_t t1,t2,t3,t4;
   ...
   cudaEventCreate(&t1);cudaEventCreate(&t2);cudaEventCreate(&t3);cudaEventCreate(&t4);
+  cudaEventRecord(t1,0);//开始进行GPU传输的时间
+  //为输入和输出图像分配GPU缓冲区
+  cudaStatus=cudaMalloc((void **)&GPUImg,IMAGESIZE);
+  cudaStatus2=cudaMalloc((void **)&GPUCopyImg,IMAGESIZE);
+  if((cudaStatus!=cudaSuccess)||(cudaStatus2!=cudaSuccess)){
+    fprintf(stderr,"cuda malloc failed. Cannot allocate GPU memory!");
+    exit(EXIT_FAILURE);
+  }
+  
 }
