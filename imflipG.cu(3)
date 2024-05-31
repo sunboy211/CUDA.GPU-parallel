@@ -1,0 +1,17 @@
+//完成GPU核函数的执行并将结果传到CPU
+int main(int argc,char **argv){
+  ...
+//cudaDeviceSynchronize等待GPU核函数结束
+  cudaStatus=cudaDeviceSynchronize();
+  if(cudaStatus!=cudaSuccess){
+    fprintf(stderr,"cudaDeviceSynchronize failed!",cudaSuccess);
+    exit(EXIT_FAILURE);
+  }
+  cudaEventRecord(t3,0);
+
+  cudaStatus=cudaMemcpy();
+  if(cudaStatus!=cudaSuccess){
+    fprintf(stderr,"cudaMemory GPU to CPU failed!");
+    exit(EXIT_FAILURE);
+  }
+}
