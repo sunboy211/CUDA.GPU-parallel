@@ -9,9 +9,12 @@ int main(int argc,char **argv){
   }
   cudaEventRecord(t3,0);
 
-  cudaStatus=cudaMemcpy();
+//将输出结果从GPU缓冲区复制到CPU内存区
+  cudaStatus=cudaMemcpy(CopyImg,GPUResult,IMAGESIZE,cudaMemcpyDeviceToHost);
   if(cudaStatus!=cudaSuccess){
     fprintf(stderr,"cudaMemory GPU to CPU failed!");
     exit(EXIT_FAILURE);
   }
+  cudaEventRecord(t4,0);
+
 }
