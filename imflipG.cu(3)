@@ -12,9 +12,19 @@ int main(int argc,char **argv){
 //将输出结果从GPU缓冲区复制到CPU内存区
   cudaStatus=cudaMemcpy(CopyImg,GPUResult,IMAGESIZE,cudaMemcpyDeviceToHost);
   if(cudaStatus!=cudaSuccess){
-    fprintf(stderr,"cudaMemory GPU to CPU failed!");
+    fprintf(stderr,"cudaMemory GPU to CPU failed!",cudaGetErrorString(cudaStatus));
+//cudaGetErrorString是封装函数
     exit(EXIT_FAILURE);
   }
   cudaEventRecord(t4,0);
-
 }
+
+//chkCUDAErr(cudaMemcpy(CopyImg,GPUResult,IMAGESIZE,cudaMemcpyDeviceToHost));
+/* 封装一个chkCUDAErr()函数
+void chkCUDAErr(cudaError_t ErrorID){
+  if(ErrorID!=cudaSuccess){
+    printf("CUDA Error!\n",cudaGetErrorString(ErrorID));
+    exit(EXIT_FAILURE);
+  }
+}
+*/
