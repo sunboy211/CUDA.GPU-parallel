@@ -13,7 +13,8 @@ int main(int argc,char **argv){
     exit(EXIT_FAILURE);
   }
   //为输入向量主机端内存复制到GPU缓冲区
-  cudaStatus=cudaMemcpy(GPUImg,TheImg,IMAGESIZE,cudaMemcpyHostToDevice);
+  cudaStatus=cudaMemcpy(GPUImg,TheImg,IMAGESIZE,cudaMemcpyHostToDevice); //CPU端存储区(由TheImg指针指定)到GPU端存储区
+//(由GPUImg指针指定，但GPUImg是CPU端变量)
   if(cudaStatus!=cudaSuccess){
     fprintf(stderr,"cudaMemcpy CPU to GPU failed!");
     exit(EXIT_FAILURE);
