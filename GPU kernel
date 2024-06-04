@@ -1,1 +1,9 @@
 //GPU端执行GPU核函数
+int IPH=ip.Hpixels; int IPV=ip.Vpixels;
+...
+BlkPerRow=(IPH+THrPerBlk-1)/ThrPerBlk;
+NumBlocks=IPV*BlkPerRow;
+switch(Flip){
+  case 'H':Hlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH);
+            
+}
