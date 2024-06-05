@@ -1,7 +1,7 @@
-//GPU端执行GPU核函数
-int IPH=ip.Hpixels; int IPV=ip.Vpixels;
+//GPU端执行GPU核函数 Hflip() Vflip()
+int IPH=ip.Hpixels; int IPV=ip.Vpixels;//像素
 ...
-BlkPerRow=(IPH+THrPerBlk-1)/ThrPerBlk;
+BlkPerRow=(IPH+THrPerBlk-1)/ThrPerBlk; //block per row
 NumBlocks=IPV*BlkPerRow;
 switch(Flip){
   case 'H':Hlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH);
