@@ -5,5 +5,11 @@ BlkPerRow=(IPH+THrPerBlk-1)/ThrPerBlk; //block per row
 NumBlocks=IPV*BlkPerRow;
 switch(Flip){
   case 'H':Hlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH);
-            
+            GPUResult=GPUCopyImg; GPUDataTransfer=2*IMAGESIZE; break;
+  case 'V':Vlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH,IPV);
+            GPUResult=GPUCopyImg; GPUDataTransfer=2*IMAGESIZE; break;
+  //转置T
+  case 'T': Hlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH);
+            Vlif <<< NumBlocks,ThrPerBlk >>> (GPUCopyImg,GPUImg,IPH,IPV);
+            GPUResult=GPUImg; GPUDataTransfer=4*IMAGESIZE; break;
 }
