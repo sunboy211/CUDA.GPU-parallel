@@ -1,0 +1,44 @@
+#一个python二维矩阵GPU计算的小栗子
+
+import numpy as np
+from numba import cuda
+
+# 使用Numba的@cuda.jit装饰器来编写CUDA加速的函数
+@cuda.jit
+def multiply_array(arr, result):
+    i, j = cuda.grid(2)
+    if i < arr.shape[0] and j < arr.shape[1]:
+        result[i, j] = arr[i, j] * 2  # 将数组中的每个元素乘以2
+
+# 生成一个随机的二维数组
+arr = np.random.rand(3, 3)
+
+# 将数据传入设备中
+d_arr = cuda.to_device(arr)
+
+# 创建一个与输入数组形状相同的结果数组
+result = np.empty_like(arr)
+
+# 将结果数组传入设备中
+d_result = cuda.to_device(result)
+
+# 定义线程块和线程网格的大小
+threads_per_block = (16, 16)
+blocks_per_grid_x = (arr.shape[0] + threads_per_block[0] - 1) // threads_per_block[0]
+blocks_per_grid_y = (arr.shape[1] + threads_per_block[1] - 1) // threads_per_block[1]
+blocks_per_grid = (blocks_per_grid_x, blocks_per_grid_y)
+
+# 在设备上执行加速计算
+multiply_array[blocks_per_grid, threads_per_block](d_arr, d_result)
+
+# 将结果拷贝回本地
+d_result.copy_to_host(result)
+
+print("Original array:")
+print(arr)
+print("Result array:")
+print(result)
+
+————————————————
+版权声明：本文为博主原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接和本声明。                        
+原文链接：https://blog.csdn.net/weixin_42727069/article/details/134637148
