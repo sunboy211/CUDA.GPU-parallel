@@ -25,5 +25,6 @@ void Vlip(uch *ImgDst,uch *ImgSrc,ui Hpixels,ui Vpixels){
   ui MYbid=blockIdx.x; //线程块ID
   ui MYtid=threadIdx.x; //线程ID
   ui MYgtid=ThrPerBlk * MYbid * MYtid;  //全局线程ID
-  
+  ui BlkPerRow=(Hpixels+THrPerBlk-1)/ThrPerBlk;
+  ui RowBytes=(Hpixels*3+3) & (~3); //字节索引
 }
