@@ -19,6 +19,11 @@ switch(Flip){
 }
 
 //核函数实现:垂直翻转图像
+__global__  //让nvcc编译器知道是GPU端函数
 void Vlip(uch *ImgDst,uch *ImgSrc,ui Hpixels,ui Vpixels){
+  ui ThrPerBlk=blockDim.x; //每个线程块有多少线程
+  ui MYbid=blockIdx.x; //线程块ID
+  ui MYtid=threadIdx.x; //线程ID
+  ui MYgtid=ThrPerBlk * MYbid * MYtid;  //全局线程ID
   
 }
