@@ -27,4 +27,18 @@ void Vlip(uch *ImgDst,uch *ImgSrc,ui Hpixels,ui Vpixels){
   ui MYgtid=ThrPerBlk * MYbid * MYtid;  //全局线程ID
   ui BlkPerRow=(Hpixels+THrPerBlk-1)/ThrPerBlk;
   ui RowBytes=(Hpixels*3+3) & (~3); //字节索引
+  ui MYrow = MYbid / B1kPerRow ;
+  ui MYcol = MYgtid - MYrow*BlkPerRow*ThrPerBlk;
+  if (MYcol >= Hpixels) return; //col超出范围
+  ui MYmirrorrow = Vpixels - 1 - MYrow;
+  ui MYsrcOffset = MYrow*RowBytes;
+  ui MYdstoffset = MYmirrorrow * RowBytes;
+  ui MYsrcIndex = MYsrc0ffset + 3 * MYcol;
+  ui MYdstIndex = MYdstOffset +3 * MYcol;
+
+//交换位于MYcol和MYmirrorcol处的像素RGB值
+ImgDst[MYdstIndex] = ImgSrc[MYsrcIndex];
+ImgDst[MYdstIndex+1]=ImgSrc[MYsrcIndex+1];
+ImgDst[MYdstIndex+2]=ImgSrc[MYsrcIndex+2];
+
 }
