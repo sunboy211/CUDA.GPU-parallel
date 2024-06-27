@@ -42,3 +42,5 @@ ImgDst[MYdstIndex+1]=ImgSrc[MYsrcIndex+1];
 ImgDst[MYdstIndex+2]=ImgSrc[MYsrcIndex+2];
 
 }
+
+//注：使用cudart64_80.dll(CUDA 8.0的运行时动态链接库)
