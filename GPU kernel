@@ -29,7 +29,7 @@ void Vlip(uch *ImgDst,uch *ImgSrc,ui Hpixels,ui Vpixels){
   ui RowBytes=(Hpixels*3+3) & (~3); //字节索引
   ui MYrow = MYbid / B1kPerRow ;
   ui MYcol = MYgtid - MYrow*BlkPerRow*ThrPerBlk;
-  if (MYcol >= Hpixels)  //无用线程
+  if (MYcol >= Hpixels)  //检查是否存在无用的线程
     return; //col超出范围  
   ui MYmirrorrow = Vpixels - 1 - MYrow;
   ui MYsrcOffset = MYrow*RowBytes;
