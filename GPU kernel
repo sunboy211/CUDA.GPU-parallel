@@ -45,3 +45,9 @@ ImgDst[MYdstIndex+2]=ImgSrc[MYsrcIndex+2];
 }
 
 //注：使用cudart64_80.dll(CUDA 8.0的运行时动态链接库)
+
+//pixel copy 拷贝图像核函数
+__global__
+void pixcopy(*uch ImgSrc, *uch ImgDst, ui FS){
+  
+}
