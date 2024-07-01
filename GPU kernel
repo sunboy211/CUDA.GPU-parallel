@@ -53,4 +53,7 @@ void pixcopy(*uch ImgSrc, *uch ImgDst, ui FS){
   ui MYtid=threadIdx.x; //线程ID
   ui MYgtid=ThrPerBlk * MYbid * MYtid;  //全局线程ID
   
+  if (MYgtid > FS) return; //超出内存分配范围
+  ImgDst[MYgtid] =ImgSrc[MYgtid];
+
 }
