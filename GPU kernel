@@ -49,5 +49,8 @@ ImgDst[MYdstIndex+2]=ImgSrc[MYsrcIndex+2];
 //pixel copy 拷贝图像核函数
 __global__
 void pixcopy(*uch ImgSrc, *uch ImgDst, ui FS){
+  ui MYbid=blockIdx.x; //线程块ID
+  ui MYtid=threadIdx.x; //线程ID
+  ui MYgtid=ThrPerBlk * MYbid * MYtid;  //全局线程ID
   
 }
